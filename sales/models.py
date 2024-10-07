@@ -27,7 +27,7 @@ class Order(models.Model):
     bill = models.OneToOneField(Bill, on_delete=models.CASCADE)
 
 class Producttype(models.Model):
-    order = models.ForeignKey(Order,on_delete=models.Cascade)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     type_name = models.CharField(max_length=300)
     
