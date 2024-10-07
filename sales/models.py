@@ -13,18 +13,21 @@ class Product(models.Model):
     name = models.CharField(max_length=30)
     price = models.FloatField()
     #many-to-many Order
-    
+
+
+class Bill(models.Model):
+     total_amount = models.FloatField()
+     is_paid = models.BooleanField(default=False)
+            # one_to_one Order 
+
+
 class Order(models.Model):
     Customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product)
+    products = models.ManyToManyField(Product, through="Producttype")
+    bill = models.OneToOneField(Bill, on_delete=models.CASCADE)
 
 class Producttype(models.Model):
     order = models.ForeignKey(Order,on_delete=models.Cascade)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     type_name = models.CharField(max_length=300)
     
-
-    class Bill(models.Model):
-     total_amount = models.FloatField()
-     is_paid = models.BooleanField(default=False)
-            # one_to_one Order 
