@@ -6,15 +6,15 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     newsletter_abo = models.BooleanField(default=True)
-    email_adress = models.CharField(max_length=30, blank=True, default="")
+    email_address = models.CharField(max_length=30, blank=True, default="")
     account = models.FloatField(blank=True, null=True)
-#one
+
 class Product(models.Model):
     name = models.CharField(max_length=30)
     price = models.FloatField()
     #many-to-many Order
 
-
+#one
 class Bill(models.Model):
      total_amount = models.FloatField()
      is_paid = models.BooleanField(default=False)
@@ -22,7 +22,7 @@ class Bill(models.Model):
 
 
 class Order(models.Model):
-    Customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, through="Producttype")
     bill = models.OneToOneField(Bill, on_delete=models.CASCADE)
 
