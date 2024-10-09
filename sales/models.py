@@ -8,9 +8,14 @@ class Customer(models.Model):
     newsletter_abo = models.BooleanField(default=True)
     email_address = models.CharField(max_length=30, blank=True, default="")
     account = models.FloatField(blank=True, null=True)
+    slug = models.SlugField(blank=True, default="")
 
-    def __str__(self):
-      return f"{self.first_name} {self.last_name}"
+
+
+def __str__(self):
+    return f"{self.first_name} {self.last_name}"
+
+
 
 class Product(models.Model):
     name = models.CharField(max_length=30)
@@ -39,6 +44,6 @@ class Producttype(models.Model):
     def __str__(self):
       return f"{self.type_name}"
 
-    def save(self, *args, **kwargs):
-       print("saved")
-       super.save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #    print("saved")
+    #    super.save(*args, **kwargs)
